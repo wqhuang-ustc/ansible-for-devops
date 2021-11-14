@@ -1,0 +1,15 @@
+-
+  name: FirewallD installation
+  hosts: db_server
+  tasks:
+    - name: Install firewallD packages
+      yum:
+        name: firewalld
+        state: present
+    - name: Start the firewallD
+      service:
+        name: firewalld
+        state: started 
+        enabled: yes
+    - name: Configure the firewalld
+      cmd: 

@@ -1,0 +1,27 @@
+-
+  name: Db installation and configuration
+  hosts: db_server
+  tasks:
+    - name: Install packages
+      yum:
+        name: {{ item }}
+        state: present
+      with_items:
+        - httpd
+        - php
+        - php-mysql
+    - name: Create ecodb database
+      mysql_db:
+        name: ecomdb
+        state: present
+    - name: Create ecomuser user
+      mysql_user:
+        name: ecomuser
+        password: ecompassword
+        host: 'localhost'
+        priv: '*.*:ALL'
+        state: present
+        
+
+
+  

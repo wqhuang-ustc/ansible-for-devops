@@ -1,0 +1,12 @@
+-
+  name: Web app installation and configuration
+  hosts: web_server
+  tasks:
+    - name: Install packages
+      yum:
+        name: {{ item }}
+        state: present
+      with_items:
+        - httpd
+        - php
+        - php-mysql
